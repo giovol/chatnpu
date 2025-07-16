@@ -14,7 +14,17 @@ else
 fi
 
 # Setup OpenVINO env
-python3 -m venv openvino_env
-source openvino_env/bin/activate
+python3 -m venv
+source .venv/bin/activate
 python -m pip install --upgrade pip
-pip install openvino==2025.2.0
+pip install openvino-dev
+
+read -r -p "Do you want to opt out from OpenVINO™ telemetry? [y/N] " response
+case "$response" in
+    [yY][eE][sS]|[yY]) 
+        opt_in_out --opt_out
+        ;;
+    *)
+        opt_in_out --opt_in
+        ;;
+esac
