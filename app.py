@@ -22,7 +22,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_dir)
 def chat(msg):
     inputs = tokenizer(msg, return_tensors="pt")
     outputs = ov_model.generate(**inputs, max_new_tokens=256)
-    return tokenizer.decode(outputs[0])
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 # POST function that get the user message and return the chatbot message
 @app.route('/send_message', methods=['POST'])
