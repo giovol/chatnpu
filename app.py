@@ -26,4 +26,4 @@ def export_chat():
     return send_file('chat_history.txt', as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
