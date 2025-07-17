@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>ChatNPU</h1>
+    <h1 id="chat-title">ChatNPU</h1>
     <div class="input-container">
         <input type="text" id="user-input" placeholder="Type your message here...">
     </div>
@@ -20,12 +20,22 @@
 
     <script>
         $(document).ready(function () {
+            let firstMessageSent = false; // Flag to track if the first message has been sent
+
             $('#send-button').click(function () {
                 var userMessage = $('#user-input').val();
-                $.post('/send_message', { message: userMessage }, function (data) {
-                    $('#chat-box').append('<p>' + data.response + '</p>');
-                    $('#user-input').val(''); // Clear input field
-                });
+                if (userMessage.trim() !== '') { // Check if the input is not empty
+                    $.post('/send_message', { message: userMessage }, function (data) {
+                        $('#chat-box').append('<p>' + data.response + '</p>');
+                        $('#user-input').val(''); // Clear input field
+
+                        // Hide the h1 element after the first message
+                        if (!firstMessageSent) {
+                            $('#chat-title').fadeOut(); // Use fadeOut for a smooth transition
+                            firstMessageSent = true; // Set the flag to true
+                        }
+                    });
+                }
             });
 
             $('#export-button').click(function () {

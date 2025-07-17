@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, jsonify, send_file
-import os
+from flask import Flask, render_template, request, jsonify, send_file 
+import logging
+
 
 app = Flask(__name__)
 
 chat_history = []  # List to store chat messages
+
+app.logger.setLevel(logging.ERROR)
 
 @app.route('/')
 def index():
@@ -27,3 +30,4 @@ def export_chat():
 
 if __name__ == '__main__':
     app.run(debug=False)
+
