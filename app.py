@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, jsonify, send_file 
+from flask import Flask, render_template, request, jsonify, send_file
+from transformers import AutoConfig, AutoTokenizer
+from optimum.intel.openvino import OVModelForCausalLM
 import logging
 
 app = Flask(__name__)
@@ -12,9 +14,15 @@ app.logger.setLevel(logging.ERROR)
 def index():
     return render_template('index.html')
 
+model_dir = "neural-chat/INT8"
+ov_model = OVModelForCausalLM.from_pretrained(model_dir, device="CPU")
+tokenizer = AutoTokenizer.from_pretrained(model_dir)
+
 # Chat function that calls OpenVINO libraries
 def chat(msg):
-    return "Hello!"
+    inputs = tokenizer(msg, return_tensors="pt")
+    outputs = ov_model.generate(**inputs, max_new_tokens=256)
+    return tokenizer.decode(outputs[0])
 
 # POST function that get the user message and return the chatbot message
 @app.route('/send_message', methods=['POST'])
