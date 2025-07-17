@@ -4,11 +4,12 @@ echo "Welcome to ChatNPU!"
 
 # Setup OpenVINO venv
 echo "Setting up OpenVINO™ venv..."
-python3 -m venv .venv > /dev/null
-source .venv/bin/activate > /dev/null
-python -m pip install --upgrade pip > /dev/null
-pip install openvino > /dev/null
-pip install flask > /dev/null
+python3 -m venv openvino_env
+source openvino_env/bin/activate
+python -m pip install --upgrade pip
+pip install --upgrade openvino==2025.2.0
+pip install --upgrade flask
+pip install --upgrade --upgrade-strategy eager "optimum[openvino]"
 
 # Check if telemetry file exists and, if not, ask the user to make a choice
 TELEMETRYFILE=~/intel/openvino_telemetry

@@ -75,9 +75,9 @@ body {
 }
 
 .input {
-    text-align: left;
+    text-align: right;
 }
 
 .output {
-    text-align: right;
+    text-align: left;
 }

@@ -11,11 +11,14 @@ app.logger.setLevel(logging.ERROR)
 def index():
     return render_template('index.html')
 
+def chat(msg):
+    return "Hello!"
+
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form['message']
-    app.logger.info(f"Received message: {user_message}")  # Log the received message
-    response_message = f"You said: {user_message}"  # Simple echo response
+    app.logger.info(f"Received message: {user_message}") 
+    response_message = f"{chat(user_message)}"
     chat_history.append(f"You: {user_message}")
     chat_history.append(f"Bot: {response_message}")
     return jsonify({'response': response_message})
