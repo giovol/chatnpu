@@ -5,8 +5,8 @@ echo "Welcome to ChatNPU!"
 # Function to setup venv
 setupvenv() {
     echo "Setting up OpenVINO™ venv..."
-    python3 -m venv .venv
-    . .venv/bin/activate
+    python -m venv .venv
+    source .venv/bin/activate
     python -m pip install --upgrade pip
     pip install --upgrade openvino==2025.2.0
     pip install --upgrade flask
