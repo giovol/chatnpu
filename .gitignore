@@ -206,5 +206,8 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+# Chat history file
 chat_history.txt
+
+# Large Language Model
 /neural-chat
