@@ -3,7 +3,7 @@
 echo "Welcome to ChatNPU!"
 
 # Setup OpenVINO venv
-echo "Setting up OpenVINO venv..."
+echo "Setting up OpenVINO™ venv..."
 python3 -m venv .venv > /dev/null
 source .venv/bin/activate > /dev/null
 python -m pip install --upgrade pip > /dev/null
