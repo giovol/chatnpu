@@ -2,12 +2,13 @@
 
 echo "Welcome to ChatNPU!"
 
-# Setup OpenVINO env
+# Setup OpenVINO venv
 echo "Setting up OpenVINO venv..."
 python3 -m venv .venv > /dev/null
 source .venv/bin/activate > /dev/null
 python -m pip install --upgrade pip > /dev/null
 pip install openvino > /dev/null
+pip install flask
 
 # Check if telemetry file exists and, if not, ask the user to make a choice
 TELEMETRYFILE=~/intel/openvino_telemetry
@@ -26,3 +27,5 @@ else
             ;;
     esac
 fi
+
+python ./server.py
