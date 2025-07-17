@@ -4,37 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
+    <title>ChatNPU</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
 </head>
 
 <body>
-    <h1 id="chat-title">ChatNPU</h1>
-    <div class="input-container">
-        <input type="text" id="user-input" placeholder="Type your message here...">
+    <div class="container">
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button id="export-button">Export Chat</button>
+        </div>
     </div>
-    <button id="send-button">Send</button>
-    <button id="export-button">Export Chat</button>
+    <div class="chat-title" id="chat-title">
+        <h1>ChatNPU</h1>
+    </div>
     <div id="chat-box"></div>
 
     <script>
         $(document).ready(function () {
             let firstMessageSent = false; // Flag to track if the first message has been sent
 
-            $('#send-button').click(function () {
-                var userMessage = $('#user-input').val();
-                if (userMessage.trim() !== '') { // Check if the input is not empty
-                    $.post('/send_message', { message: userMessage }, function (data) {
-                        $('#chat-box').append('<p>' + data.response + '</p>');
-                        $('#user-input').val(''); // Clear input field
+            $('#user-input').keypress(function (event) {
+                if (event.which === 13) { // Check if the Enter key is pressed
+                    var userMessage = $('#user-input').val();
+                    if (userMessage.trim() !== '') { // Check if the input is not empty
+                        $.post('/send_message', { message: userMessage }, function (data) {
+                            $('#chat-box').append('<p>' + data.response + '</p>');
+                            $('#user-input').val(''); // Clear input field
 
-                        // Hide the h1 element after the first message
-                        if (!firstMessageSent) {
-                            $('#chat-title').fadeOut(); // Use fadeOut for a smooth transition
-                            firstMessageSent = true; // Set the flag to true
-                        }
-                    });
+                            // Hide the h1 element after the first message
+                            if (!firstMessageSent) {
+                                $('#chat-title').fadeOut(); // Use fadeOut for a smooth transition
+                                firstMessageSent = true; // Set the flag to true
+                            }
+                        });
+                    }
                 }
             });
 
