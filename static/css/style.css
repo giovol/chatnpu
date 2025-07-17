@@ -27,7 +27,6 @@ body {
     background-color: #444;
     color: white;
     outline: none;
-
 }
 
 .input-container button {
@@ -39,17 +38,23 @@ body {
     border-radius: 25px;
 }
 
+/* Mobile */
 .container {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 30%;
-    padding-right: 30%;
-    -webkit-box-sizing: border-box;
-    /* WebKit */
-    -moz-box-sizing: border-box;
-    /* Gecko */
-    box-sizing: border-box;
-    /* IE */
+    padding: 20px 5%
+}
+
+/* Tablet/Small screens */
+@media (min-width:600px) {
+    .container {
+        padding: 20px 10%
+    }
+}
+
+/* Desktop/Big screens */
+@media (min-width:900px) {
+    .container {
+        padding: 20px 30%
+    }
 }
 
 .chat-title {
@@ -59,17 +64,14 @@ body {
     height: 100vh;
 }
 
-.chat-title h1 {
+.chat-title h1,
+.chat p {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .chat {
     padding: 40px;
     overflow-y: auto;
-}
-
-.chat p {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .input {
