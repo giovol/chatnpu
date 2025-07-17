@@ -50,7 +50,7 @@ fi
 # You can find models at https://huggingface.co
 MODEL=./neural-chat/
 if [ -d "$MODEL" ]; then
-    print "Model found! If you want to use another one, please delete the 'neural-chat' directory on the script folder"
+    echo "Model found! If you want to use another one, please delete the 'neural-chat' directory on the script folder"
 else
     read -r -p "Which model do you want to use? If you're unsure leave blank: " model
     if [ -n "$model" ]; then
