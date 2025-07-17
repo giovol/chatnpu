@@ -29,4 +29,6 @@ else
     esac
 fi
 
+optimum-cli export openvino --model openai-community/gpt2 --task text-generation-with-past --weight-format int8 neural-chat/INT8
+
 python ./app.py
