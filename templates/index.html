@@ -1,14 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <input type="text" id="user-input" placeholder="Type your message here...">
+    <button id="send-button">Send</button>
+    <button id="export-button">Export Chat</button>
+    <div id="chat-box"></div>
 
+    <script>
+        $(document).ready(function() {
+            $('#send-button').click(function() {
+                var userMessage = $('#user-input').val();
+                $.post('/send_message', { message: userMessage }, function(data) {
+                    $('#chat-box').append('<p>' + data.response + '</p>');
+                    $('#user-input').val(''); // Clear input field
+                });
+            });
 
-<head><title>Test</title> 
-    <meta charset=utf-8> </head>
-    <body>
-        <h1>My Website</h1>
-        <form action="/my-link/">
-            <input type="submit" value="Click me" />
-        </form>
-        
-        <button> <a href="/my-link/">Click me</a></button>
-
-    </body>
+            $('#export-button').click(function() {
+                window.location.href = '/export_chat'; // Redirect to export route
+            });
+        });
+    </script>
+</body>
+</html>
