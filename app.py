@@ -3,7 +3,8 @@ import logging
 
 app = Flask(__name__)
 
-chat_history = []  # List to store chat messages
+# Chat history list
+chat_history = [] 
 
 app.logger.setLevel(logging.ERROR)
 
@@ -11,9 +12,11 @@ app.logger.setLevel(logging.ERROR)
 def index():
     return render_template('index.html')
 
+# Chat function that calls OpenVINO libraries
 def chat(msg):
     return "Hello!"
 
+# POST function that get the user message and return the chatbot message
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form['message']
@@ -23,13 +26,13 @@ def send_message():
     chat_history.append(f"Bot: {response_message}")
     return jsonify({'response': response_message})
 
+# Export chat function using a text file
 @app.route('/export_chat', methods=['GET'])
 def export_chat():
-    # Create a text file with the chat history
     with open('chat_history.txt', 'w') as f:
         for message in chat_history:
             f.write(message + '\n')
     return send_file('chat_history.txt', as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Set debug=True for development
+    app.run(debug=False)
