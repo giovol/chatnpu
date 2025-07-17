@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify, send_file 
 import logging
 
-
 app = Flask(__name__)
 
 chat_history = []  # List to store chat messages
@@ -15,6 +14,7 @@ def index():
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.form['message']
+    app.logger.info(f"Received message: {user_message}")  # Log the received message
     response_message = f"You said: {user_message}"  # Simple echo response
     chat_history.append(f"You: {user_message}")
     chat_history.append(f"Bot: {response_message}")
@@ -29,5 +29,4 @@ def export_chat():
     return send_file('chat_history.txt', as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=False)
-
+    app.run(debug=True)  # Set debug=True for development

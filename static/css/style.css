@@ -1,10 +1,9 @@
-
 body {
     margin: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
     background-color: #1a1a1a;
     color: white;
 }
@@ -12,10 +11,11 @@ body {
 .input-container {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 7px;
     background-color: #333;
     border-radius: 25px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-size: 11px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -27,6 +27,7 @@ body {
     background-color: #444;
     color: white;
     outline: none;
+
 }
 
 .input-container button {
@@ -35,20 +36,46 @@ body {
     cursor: pointer;
     padding: 10px;
     color: black;
-    font-size: 18px;
     border-radius: 25px;
 }
 
-.container{
-    padding:20px;
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30%;
+    padding-right: 30%;
+    -webkit-box-sizing: border-box;
+    /* WebKit */
+    -moz-box-sizing: border-box;
+    /* Gecko */
+    box-sizing: border-box;
+    /* IE */
 }
 
-.chat-title{
+.chat-title {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
-} 
-.chat-title h1{
+    height: 100vh;
+}
+
+.chat-title h1 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.chat {
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.chat p {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.input {
+    text-align: left;
+}
+
+.output {
+    text-align: right;
 }
